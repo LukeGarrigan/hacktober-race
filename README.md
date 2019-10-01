@@ -18,7 +18,4 @@
 ## How it looks
 
 ### First Commit
-![Image from the first commit](https://imgur.com/eVRj886)
-
-"# hacktober-race" 
-"# hacktober-race" 
+![Image from the first commit](https://i.imgur.com/eVRj886.png)
