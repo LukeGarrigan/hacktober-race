@@ -3,7 +3,7 @@ const socket = require('socket.io');
 const app = express();
 let Player = require("./Player");
 
-let server = app.listen(80);
+let server = app.listen(4000);
 app.use(express.static("public"));
 
 
@@ -15,7 +15,10 @@ setInterval(updateGame, 16);
 
 io.sockets.on("connection", socket => {
   console.log(`New connection ${socket.id}`);
-  players.push(new Player(socket.id));
+
+  let newPlayer = new Player(socket.id, players);
+
+  players.push(newPlayer);
 
   socket.on("disconnect", () => {
     io.sockets.emit("disconnect", socket.id);
@@ -26,13 +29,11 @@ io.sockets.on("connection", socket => {
 
 io.sockets.on("disconnect", socket => {
   io.sockets.emit("disconnect", socket.id);
-
   players = players.filter(player.id !== socket.id);
 });
 
-
-
 function updateGame() {
+
   io.sockets.emit("heartbeat", players);
 }
 

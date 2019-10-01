@@ -1,8 +1,9 @@
 class Player {
-  constructor(id) {
-    this.x = Math.random() * 400 + 1;
-    this.y = Math.random() * 400 + 1;
+  constructor(id, players) {
+    this.x = 400;
+    this.y = this.putPlayerBelowExistingPlayers(players);
     this.id = id;
+
 
     this.rgb = {
       r: Math.random() * 255,
@@ -11,6 +12,9 @@ class Player {
     }
   }
 
+  putPlayerBelowExistingPlayers(players) {
+    return players[players.length-1] ? players[players.length-1].y + 100 : 200;
+  }
 }
 
 module.exports = Player;

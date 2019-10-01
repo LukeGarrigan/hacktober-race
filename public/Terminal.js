@@ -1,4 +1,4 @@
-export default class Console {
+export default class Terminal {
 
     constructor(sentence) {
         this.sentence = sentence;
@@ -10,11 +10,11 @@ export default class Console {
 
 
     draw() {
-        this.drawConsole();
+        this.drawTerminal();
         this.displaySentence();
     }
 
-    drawConsole() {
+    drawTerminal() {
         push();
         // top of console
         stroke(255, 255, 255);
