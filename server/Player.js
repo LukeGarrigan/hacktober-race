@@ -1,9 +1,10 @@
 class Player {
-  constructor(id, players) {
+  constructor(id, y, sentence) {
     this.x = 400;
-    this.y = this.putPlayerBelowExistingPlayers(players);
+    this.y = y;
     this.id = id;
-
+    this.sentence = sentence;
+    this.currentIndex = 0;
 
     this.rgb = {
       r: Math.random() * 255,
@@ -12,9 +13,13 @@ class Player {
     }
   }
 
-  putPlayerBelowExistingPlayers(players) {
-    return players[players.length-1] ? players[players.length-1].y + 100 : 200;
+  keyPressed(key) {
+    if (key === this.sentence[this.currentIndex]) {
+      this.currentIndex++;
+    }
   }
+
+
 }
 
 module.exports = Player;

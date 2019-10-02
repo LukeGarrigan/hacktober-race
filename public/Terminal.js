@@ -1,7 +1,6 @@
 export default class Terminal {
 
-    constructor(sentence) {
-        this.sentence = sentence;
+    constructor() {
         this.x = windowWidth * 0.2;
         this.y = windowHeight / 2;
         this.width = windowWidth * 0.6;
@@ -11,7 +10,7 @@ export default class Terminal {
 
     draw() {
         this.drawTerminal();
-        this.displaySentence();
+        this.displayPath();
     }
 
     drawTerminal() {
@@ -27,15 +26,10 @@ export default class Terminal {
         pop();
     }
 
-    displaySentence() {
-        this.displayDirectoryPath();
-        fill(255, 255, 255);
-        text(this.sentence, this.x + 70, this.y + 200);
-    }
-
-    displayDirectoryPath() {
+    displayPath() {
         textSize(40);
         fill(100, 255, 100);
         text("C:\\Users\\codeheir\\hacker\\path", this.x + 70, this.y + 100);
     }
+
 }
