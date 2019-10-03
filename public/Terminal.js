@@ -6,6 +6,9 @@ export default class Terminal {
         this.width = windowWidth * 0.6;
         this.height = windowHeight / 2;
 
+        this.cursorWidth = 20;
+        this.cursorHeight = 8;
+
         this.currentIndex = 0;
         this.wrongLetter = false;
     }
@@ -15,6 +18,7 @@ export default class Terminal {
         this.drawTerminal();
         this.displayPath();
         this.drawSentence();
+        this.drawCursor();
     }
 
     updatePlayerCurrentLetter(currentIndex) {
@@ -60,5 +64,16 @@ export default class Terminal {
         }
     }
 
+    drawCursor() {
+        if (this.sentence) {
+            if (Math.floor(frameCount / 60) % 2 === 0) {
+                let currentCharWidth = textWidth(this.sentence.charAt(this.currentIndex));
+                let currentSentenceWidth = textWidth(this.sentence.substring(0, this.currentIndex));
+                let cursorX = (windowWidth / 4.5) + currentSentenceWidth + ((currentCharWidth - this.cursorWidth) / 2);
 
+                fill(100, 255, 100);
+                rect(cursorX, (windowHeight / 1.5) + 8, this.cursorWidth, this.cursorHeight);
+            }
+        }
+    }
 }
