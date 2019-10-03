@@ -16,6 +16,8 @@ export default class PlayersHandler {
                 this.players.push(new Player(playerFromServer));
             } else {
                 existingPlayer.currentIndex = playerFromServer.currentIndex;
+                existingPlayer.finished = playerFromServer.finished;
+                existingPlayer.winner = playerFromServer.winner;
             }
         }
     }
@@ -35,6 +37,15 @@ export default class PlayersHandler {
 
     draw() {
         this.players.forEach(player => player.draw());
+    }
+
+    getPlayer(id) {
+        for (let i = 0; i < this.players.length ; i++) {
+            if (this.players[i].id === id) {
+                return this.players[i];
+            }
+        }
+        return undefined;
     }
 
 

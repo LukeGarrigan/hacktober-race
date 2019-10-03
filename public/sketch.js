@@ -5,30 +5,39 @@ import PlayersHandler from "./PlayersHandler.js";
 
 const socket = io.connect('http://localhost:4000');
 let playersHandler = new PlayersHandler();
-
-socket.on("heartbeat", players => playersHandler.updatePlayers(players));
-socket.on("disconnect", playerId => playersHandler.removePlayer(playerId));
-
 let terminal;
 let masterBranch;
 
 window.setup = function () {
     createCanvas(windowWidth, windowHeight);
-    terminal = new Terminal();
     masterBranch = new MasterBranch();
+    terminal = new Terminal();
+
+
+    registerSocketHandlers();
 }
 
 window.draw = function () {
     background(14, 16, 18);
+    if (playersHandler.getPlayer(socket.id)) {
+        terminal.updatePlayerCurrentLetter(playersHandler.getPlayer(socket.id).currentIndex);
+    }
+
     terminal.draw();
     playersHandler.draw();
     masterBranch.draw();
 }
 
 window.keyPressed = function(){
-    console.log(key);
+    terminal.wrongLetter = false;
     socket.emit("keyPressed", key);
 }
 
+function registerSocketHandlers() {
+    socket.on("sentence", sentence => terminal.updateSentence(sentence));
+    socket.on("heartbeat", players => playersHandler.updatePlayers(players));
+    socket.on("disconnect", playerId => playersHandler.removePlayer(playerId));
+    socket.on("wrongLetter", () => terminal.wrongLetter = true);
+}
 
 
