@@ -37,4 +37,6 @@
 
 
 ## How to contribute
-Go to the [issues](https://github.com/LukeGarrigan/hacktober-race/issues) section of the repo and find an issue you'd like to work on. Comment on the ticket you'd like to work on as to not be **racing** other people to code it up!
+Go to the [issues](https://github.com/LukeGarrigan/hacktober-race/issues) section of the repo and find an issue you'd like to work on. Comment on the ticket you'd like to work on as to not be **racing** other people to code it up! 
+
+Then go ahead and make a pull request.
