@@ -17,7 +17,7 @@ setInterval(updateGame, 16);
 
 io.sockets.on("connection", socket => {
   console.log(`New connection ${socket.id}`);
-  gameEngine.createNewPlayer(socket);
+  gameEngine.createNewPlayer(socket.id);
 
   socket.on("disconnect", () => {
     io.sockets.emit("disconnect", socket.id);
@@ -43,8 +43,15 @@ function updateGame() {
   gameEngine.updatePlayers();
   io.sockets.emit("heartbeat", gameEngine.players);
   io.sockets.emit("sentence", gameEngine.sentence);
+  if (gameEngine.winner && !gameEngine.restartCountdown) {
+    // emit event to show everyone that the game is finished
+    io.sockets.emit("winner", gameEngine.winner.id);
+    gameEngine.restartCountdown = setTimeout(() => restartGame(), 5000);
+  }
 }
 
-
-
-
+function restartGame() {
+  // emit event to reset players
+  io.sockets.emit("restart");
+  gameEngine.restart();
+}
