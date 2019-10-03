@@ -3,7 +3,7 @@
   <br>
       <img src="https://pbs.twimg.com/profile_images/1168932795185586176/wvIE7fUn_400x400.jpg" alt="codeheir logo" title="Codeheir"  height="200" />
   <br>
-  hacktober-race
+  hacktober-racer
   <br>
 </h1>
 
@@ -14,8 +14,11 @@
 2. `npm start` to get it running!
 3. Navigate to localhost:4000
 
-
 ## How it looks
 
-### First Commit
-![Image from the first commit](https://i.imgur.com/eVRj886.png)
+### Current state
+![gif of the current state](https://user-images.githubusercontent.com/12545967/66150335-d6d83380-e60c-11e9-9aa7-6b5d86866cd8.gif)
+
+
+## How to contribute
+Go to the ![issues](https://github.com/LukeGarrigan/hacktober-race/issues and find) section of the repo and find an issue you'd like to work on. Comment on the ticket you'd like to work on as to not be **racing** other people to code it up!
