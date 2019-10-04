@@ -1,9 +1,10 @@
 const Player = require("./Player");
+const randomSentence = require('./randomSentence');
 
 class GameEngine {
     constructor() {
         this.players = [];
-        this.sentence = "int main(){printf (\"Hi World\\n\");return 0;}";
+        this.sentence = randomSentence();   // perhaps move these to a newGame function
     }
 
     createNewPlayer(socket) {
