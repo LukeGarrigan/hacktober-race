@@ -1,9 +1,10 @@
 const Player = require("./Player");
+const randomSentence = require('./randomSentence');
 
 class GameEngine {
     constructor() {
         this.players = [];
-        this.sentence = "int main(){printf (\"Hi World\\n\");return 0;}";
+        this.sentence = randomSentence();
         this.winner = undefined;
         this.restartCountdown = undefined;
     }
@@ -56,9 +57,10 @@ class GameEngine {
 
     restart() {
         console.log('restarting game now');
-        let socketIds = this.players.map(player => player.id);
-        this.players = [];
-        socketIds.map(id => this.createNewPlayer(id));
+        this.sentence = randomSentence();
+        for (let i = 0; i < this.players.length; i++) {
+            this.players[i].reset(this.sentence);
+        }
         delete this.winner;
         delete this.restartCountdown;
     }

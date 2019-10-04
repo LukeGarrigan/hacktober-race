@@ -15,6 +15,13 @@ class Player {
 
     }
 
+    reset(sentence) {
+        this.sentence = sentence;
+        this.currentIndex = 0;
+        delete this.winner;
+        delete this.finished;
+    }
+
     correctKeyPressed(key) {
         if (key === this.sentence[this.currentIndex]) {
             this.currentIndex++;
