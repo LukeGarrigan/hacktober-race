@@ -26,9 +26,11 @@ window.draw = function () {
   masterBranch.draw()
 }
 
-window.keyPressed = function () {
-  terminal.wrongLetter = false
-  socket.emit('keyPressed', key)
+
+window.keyPressed = function(e){
+    e.preventDefault();
+    terminal.wrongLetter = false;
+    socket.emit("keyPressed", key);
 }
 
 function registerSocketHandlers () {
