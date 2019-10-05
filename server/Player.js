@@ -29,12 +29,21 @@ class Player {
         return this.currentIndex > this.sentence.length - 1;
     }
 
-    triggerEnd() {
+    triggerEnd(length_of_sentence) {
         if (!this.finished) { // fire only once
             this.finished = true;
             this.completedTime = Date.now();
-            this.completedTime - this.joinedTime;
+            this.timeTaken = (this.completedTime - this.joinedTime) / 1000; // in s
+            this.wordCount = length_of_sentence / this.timeTaken; // character per second
         }
+    }
+
+    getTimeTaken() {
+        return(this.timeTaken ? this.timeTaken : -1);
+    }
+    
+    getWordCount() {
+        return(this.wordCount ? this.wordCount : -1);
     }
 }
 

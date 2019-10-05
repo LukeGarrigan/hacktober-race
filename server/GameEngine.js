@@ -42,7 +42,7 @@ class GameEngine {
 
     findWinner(player) {
         if (player.hasFinished()) {
-            player.triggerEnd();
+            player.triggerEnd(this.sentence.length);
             let playerFinishCount = this.players.filter(p => p.finished).length;
             if (playerFinishCount === 1) {
                 player.winner = true;
