@@ -9,7 +9,6 @@ export default class Player {
     this.rgb = player.rgb
     this.sentence = player.sentence
     this.img = createImg(player.profileImg)
-    this.img.hide()
 
     this.currentIndex = 0
     this.actualXPosition = 0
@@ -22,8 +21,7 @@ export default class Player {
     fill(this.rgb.r, this.rgb.g, this.rgb.b)
     this.drawLines()
     circle(this.x, this.y, 30)
-
-    // this.drawGithubImage();
+    this.drawGithubImage()
   }
 
   drawGithubImage () {

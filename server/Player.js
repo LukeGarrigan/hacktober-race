@@ -5,7 +5,7 @@ class Player {
     this.id = id
     this.sentence = sentence
     this.currentIndex = 0
-    this.profileImg = `https://i.pravatar.cc/150?u=${id}`
+    this.profileImg = `https://github.com/LukeGarrigan.png`
 
     this.rgb = {
       r: Math.random() * 255,
