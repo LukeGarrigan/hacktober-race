@@ -46,8 +46,9 @@ class Player {
 
     calcCharPerSec() {
         const msBetweenCorrectKeys = Date.now() - this.lastKeyTime;
-        const cps = msBetweenCorrectKeys / 1000;
-        return cps;
+        const cps = 1000 / msBetweenCorrectKeys;
+        // Round to hundredth
+        return Math.round(cps * 100) / 100;
     }
 }
 
