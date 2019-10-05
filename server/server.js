@@ -1,5 +1,6 @@
 const express = require("express");
 const socket = require('socket.io');
+const path = require("path");
 const app = express();
 const GameEngine = require("./GameEngine");
 
@@ -7,7 +8,8 @@ const GameEngine = require("./GameEngine");
 const gameEngine = new GameEngine();
 let server = app.listen(4000);
 
-app.use(express.static("public"));
+const publicDir = path.join(__dirname, "../public");
+app.use(express.static(publicDir));
 
 let io = socket(server);
 
