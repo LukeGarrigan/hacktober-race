@@ -91,7 +91,7 @@ export default class Player {
     pop()
   }
 
-  drawCurrentSpeed() {
+  drawCurrentSpeed () {
     textSize(32)
     text(`${this.currentSpeed} cps`, this.x + 35, this.y)
   }
