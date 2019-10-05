@@ -6,6 +6,7 @@ class Player {
         this.sentence = sentence;
         this.currentIndex = 0;
         this.profileImg = `https://i.pravatar.cc/150?u=${id}`;
+        this.joinedTime = Date.now();
 
         this.rgb = {
             r: Math.random() * 255,
@@ -26,6 +27,14 @@ class Player {
 
     hasFinished() {
         return this.currentIndex > this.sentence.length - 1;
+    }
+
+    triggerEnd() {
+        if (!this.finished) { // fire only once
+            this.finished = true;
+            this.completedTime = Date.now();
+            this.completedTime - this.joinedTime;
+        }
     }
 }
 
