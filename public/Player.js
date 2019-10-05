@@ -13,6 +13,7 @@ export default class Player {
 
         this.currentIndex = 0;
         this.actualXPosition = 0;
+        this.currentSpeed = player.currentSpeed || 0;
 
 
         this.finished = false;
@@ -25,7 +26,7 @@ export default class Player {
         this.drawLines();
         circle(this.x, this.y, 30);
 
-
+        this.drawCurrentSpeed();
         // this.drawGithubImage();
     }
 
@@ -92,6 +93,10 @@ export default class Player {
         pop();
     }
 
+    drawCurrentSpeed() {
+        textSize(32);
+        text(`${this.currentSpeed} cps`, this.x + 35 , this.y);
+    }
 
 
 }

@@ -18,6 +18,7 @@ export default class PlayersHandler {
                 existingPlayer.currentIndex = playerFromServer.currentIndex;
                 existingPlayer.finished = playerFromServer.finished;
                 existingPlayer.winner = playerFromServer.winner;
+                existingPlayer.currentSpeed = playerFromServer.currentSpeed;
             }
         }
     }
