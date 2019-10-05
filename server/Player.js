@@ -27,7 +27,7 @@ class Player {
   correctKeyPressed (key) {
     if (key === this.sentence[this.currentIndex]) {
       this.currentIndex++
-      this.onCorrectKeyPress();
+      this.onCorrectKeyPress()
       return true
     } else {
       return false

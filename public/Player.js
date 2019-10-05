@@ -13,7 +13,7 @@ export default class Player {
 
     this.currentIndex = 0
     this.actualXPosition = 0
-    this.currentSpeed = player.currentSpeed || 0;
+    this.currentSpeed = player.currentSpeed || 0
 
     this.finished = false
     this.winner = false
