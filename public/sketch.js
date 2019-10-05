@@ -28,7 +28,8 @@ window.draw = function () {
     masterBranch.draw();
 }
 
-window.keyPressed = function(){
+window.keyPressed = function(e){
+    e.preventDefault();
     terminal.wrongLetter = false;
     socket.emit("keyPressed", key);
 }
