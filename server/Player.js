@@ -6,9 +6,10 @@ class Player {
     this.sentence = sentence
     this.currentIndex = 0
     this.profileImg = `https://i.pravatar.cc/150?u=${id}`
-    this.lastKeyTime = Date.now()
+    this.startTime = Date.now()
     // Characters per second
     this.currentSpeed = 0
+    this.timeElapsed = 0
 
     this.rgb = {
       r: Math.random() * 255,
@@ -38,15 +39,15 @@ class Player {
     return this.currentIndex > this.sentence.length - 1
   }
 
-  onCorrectKeyPress() {
+  onCorrectKeyPress () {
     this.currentSpeed = this.calcCharPerSec()
     this.lastKeyTime = Date.now()
   }
 
-  calcCharPerSec() {
-    const msBetweenCorrectKeys = Date.now() - this.lastKeyTime
-    const cps = 1000 / msBetweenCorrectKeys
-    // Round to hundredth
+  calcCharPerSec () {
+    const timeElapsed = Date.now() - this.startTime
+    const cps = this.currentIndex / (timeElapsed / 1000)
+    // Round to tenth
     return Math.round(cps * 10) / 10
   }
 }
