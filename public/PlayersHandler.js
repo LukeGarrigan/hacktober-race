@@ -34,6 +34,9 @@ export default class PlayersHandler {
     removePlayer(playerId) {
         this.players = this.players.filter(player => player.id !== playerId);
     }
+    resetPlayers() {
+        this.players = [];
+    }
 
     draw() {
         this.players.forEach(player => player.draw());
