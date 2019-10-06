@@ -5,10 +5,10 @@ const GameEngine = require('./GameEngine')
 
 const gameEngine = new GameEngine()
 const server = app.listen(4000)
-const path = require("path");
+const path = require('path')
 
-const publicDir = path.join(__dirname, "../public");
-app.use(express.static(publicDir));
+const publicDir = path.join(__dirname, '../public')
+app.use(express.static(publicDir))
 
 const io = socket(server)
 
