@@ -9,7 +9,6 @@ class Player {
     this.startTime = Date.now();
     // Characters per second
     this.currentSpeed = 0;
-    this.timeElapsed = 0;
 
     this.rgb = {
       r: Math.random() * 255,
@@ -21,6 +20,8 @@ class Player {
   reset (sentence) {
     this.sentence = sentence;
     this.currentIndex = 0;
+    this.currentSpeed = 0;
+    this.startTime = Date.now();
     delete this.winner;
     delete this.finished;
   }
@@ -41,7 +42,6 @@ class Player {
 
   onCorrectKeyPress () {
     this.currentSpeed = this.calcCharPerSec();
-    this.lastKeyTime = Date.now();
   }
 
   calcCharPerSec () {
