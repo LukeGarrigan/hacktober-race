@@ -20,5 +20,6 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    semi: [2, 'always']
   }
 }

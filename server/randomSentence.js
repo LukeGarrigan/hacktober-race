@@ -9,6 +9,6 @@ module.exports = () => {
     'git add -A',
     'const express = require(\'express\')',
     'const socket = require(\'socket.io\')' // add or change the list
-  ]
-  return sentences[Math.floor(Math.random() * sentences.length)]
-}
+  ];
+  return sentences[Math.floor(Math.random() * sentences.length)];
+};
