@@ -1,8 +1,8 @@
 const express = require('express');
 const socket = require('socket.io');
 const app = express();
-const GameEngine = require("./GameEngine");
-const axios = require('axios')
+const GameEngine = require('./GameEngine');
+const axios = require('axios');
 const port = 4000;
 
 const gameEngine = new GameEngine();
@@ -18,19 +18,19 @@ console.log(`Running on port ${port}`);
 
 setInterval(updateGame, 16);
 
-app.get("/success", function (req, res) {
+app.get('/success', function (req, res) {
   console.log(req);
 
-  let authorisationCode = req.query.code;
+  const authorisationCode = req.query.code;
 
-  const clientId = "0ebd20dd11e06586d4b8";
+  const clientId = '0ebd20dd11e06586d4b8';
   const clientSecret = process.env.clientSecret;
-  let url = `https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecret}&code=${authorisationCode}&scope=user`;
+  const url = `https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecret}&code=${authorisationCode}&scope=user`;
   axios({
-    method: "post",
+    method: 'post',
     url,
     headers: {
-      accept: "application/json"
+      accept: 'application/json'
     }
   }).then((response) => {
     console.log(response);
@@ -39,23 +39,22 @@ app.get("/success", function (req, res) {
   });
 });
 
-function grabUserData(accessToken) {
+function grabUserData (accessToken) {
   axios({
-    method: "get",
-    url: "https://api.github.com/user",
+    method: 'get',
+    url: 'https://api.github.com/user',
     headers: {
-      accept: "application/json",
+      accept: 'application/json',
       Authorization: `token ${accessToken}`
     }
   }).then((response) => {
     console.log(response);
   }).catch((err) => {
     console.log(err);
-  })
+  });
 }
 
-
-io.sockets.on("connection", socket => {
+io.sockets.on('connection', socket => {
   console.log(`New connection ${socket.id}`);
   gameEngine.createNewPlayer(socket);
 
@@ -73,13 +72,11 @@ io.sockets.on("connection", socket => {
   });
 });
 
-
-function isModifierKey(key) {
+function isModifierKey (key) {
   return key === 'Shift' || key === 'Control' || key === 'Alt';
 }
 
-
-function updateGame() {
+function updateGame () {
   gameEngine.updatePlayers();
   io.sockets.emit('heartbeat', gameEngine.players);
   io.sockets.emit('sentence', gameEngine.sentence);
@@ -90,7 +87,7 @@ function updateGame() {
   }
 }
 
-function restartGame() {
+function restartGame () {
   // emit event to reset players
   io.sockets.emit('restart');
   gameEngine.restart();
