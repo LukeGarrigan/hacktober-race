@@ -23,7 +23,7 @@ io.sockets.on('connection', socket => {
     gameEngine.removePlayer(socket.id);
   });
 
-  socket.on('keyPressed', key => {
+  socket.on('keyPressed', (key) => {
     if (!gameEngine.correctKeyPressed(key, socket.id)) {
       if (!isModifierKey(key)) {
         socket.emit('wrongLetter');

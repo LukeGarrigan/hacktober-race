@@ -58,9 +58,7 @@ class GameEngine {
       if (playerFinishCount === 1) {
         player.winner = true;
         this.winner = player;
-        console.log(
-          `player ${this.winner.id} won (game finished), restarting game soon`
-        );
+        console.log(`player ${this.winner.id} won (game finished), restarting game soon`);
       }
     }
   }
