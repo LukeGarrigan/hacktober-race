@@ -73,6 +73,7 @@ export default class Player {
       this.drawLineFromEndPositionToPlayer();
       this.x = lerp(this.x, windowWidth - 100, 0.05);
       this.y = lerp(this.y, 50, 0.05);
+      console.log(this.y);
     }
   }
 
