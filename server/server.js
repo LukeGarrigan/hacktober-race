@@ -56,7 +56,7 @@ function grabUserData (accessToken) {
 
 io.sockets.on('connection', socket => {
   console.log(`New connection ${socket.id}`);
-  gameEngine.createNewPlayer(socket);
+  gameEngine.createNewPlayer(socket.id);
 
   socket.on('disconnect', () => {
     io.sockets.emit('disconnect', socket.id);
@@ -70,11 +70,11 @@ io.sockets.on('connection', socket => {
       }
     }
   });
-});
 
-function isModifierKey (key) {
-  return key === 'Shift' || key === 'Control' || key === 'Alt';
-}
+  function isModifierKey (key) {
+    return key === 'Shift' || key === 'Control' || key === 'Alt';
+  }
+});
 
 function updateGame () {
   gameEngine.updatePlayers();
