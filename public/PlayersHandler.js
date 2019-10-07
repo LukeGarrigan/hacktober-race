@@ -3,6 +3,9 @@ import Player from './Player.js';
 export default class PlayersHandler {
   constructor () {
     this.players = [];
+
+    this.playerInitialYPosition = 200;
+    this.playerYPositionDelta = 100;
   }
 
   updatePlayers (serverPlayers) {
@@ -11,14 +14,15 @@ export default class PlayersHandler {
 
       const existingPlayer = this.playerExists(playerFromServer);
       if (!existingPlayer) {
+
+        const playersYPosition = this.playerYPositionDelta + (this.playerYPositionDelta * (this.players.length + 1));
+        playerFromServer.y = playersYPosition;
         this.players.push(new Player(playerFromServer));
       } else {
         existingPlayer.currentIndex = playerFromServer.currentIndex;
         existingPlayer.finished = playerFromServer.finished;
         existingPlayer.winner = playerFromServer.winner;
         existingPlayer.currentSpeed = playerFromServer.currentSpeed;
-        existingPlayer.y = playerFromServer.y;
-        existingPlayer.startY = playerFromServer.y;
       }
     }
   }
@@ -34,6 +38,10 @@ export default class PlayersHandler {
 
   removePlayer (playerId) {
     this.players = this.players.filter(player => player.id !== playerId);
+    this.players.forEach((player, idx) => {
+      player.y = this.playerInitialYPosition + this.playerYPositionDelta * idx;
+      player.startY = this.playerInitialYPosition + this.playerYPositionDelta * idx;
+    });
   }
 
   resetPlayers () {
