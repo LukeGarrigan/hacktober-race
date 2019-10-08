@@ -1,7 +1,6 @@
 class Player {
-  constructor (id, y, sentence) {
+  constructor (id, sentence) {
     this.x = 400;
-    this.y = y;
     this.id = id;
     this.sentence = sentence;
     this.currentIndex = 0;
