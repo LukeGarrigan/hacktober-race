@@ -1,6 +1,5 @@
 export default class Player {
   constructor (player) {
-    console.log(player)
     this.x = player.x;
     this.startX = this.x - 200;
     this.startY = player.y;

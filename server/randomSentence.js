@@ -10,6 +10,5 @@ module.exports = () => {
     'const express = require(\'express\')',
     'const socket = require(\'socket.io\')' // add or change the list
   ];
-  
   return sentences[Math.floor(Math.random() * sentences.length)];
 };
