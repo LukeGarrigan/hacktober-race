@@ -30,6 +30,11 @@
 2. `npm start` to get it running!
 3. Navigate to localhost:4000
 
+## How it looks
+
+### Current state
+![gif of the current state](https://user-images.githubusercontent.com/12545967/66150335-d6d83380-e60c-11e9-9aa7-6b5d86866cd8.gif)
+
 
 ## How to contribute
 1. Star the repo ⭐ to hopefully spread the word!
@@ -37,11 +42,4 @@
 3. Write your amazing code
 4. Run `npm run lint` 📗
 3. Go ahead and make a pull request. ⬆
-
-## How it looks
-
-### Initial commit (It looks better now 😁)
-![gif of the current state](https://user-images.githubusercontent.com/12545967/66150335-d6d83380-e60c-11e9-9aa7-6b5d86866cd8.gif)
-
-
 
