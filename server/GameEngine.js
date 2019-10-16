@@ -6,7 +6,7 @@ class GameEngine {
     this.players = [];
     this.sentence = randomSentence();
     this.winner = undefined;
-    this.restartCountdown = undefined;
+    this.endGameCountdown = undefined;
   }
 
   createNewPlayer (socketId) {
@@ -61,7 +61,7 @@ class GameEngine {
       this.players[i].reset(this.sentence);
     }
     delete this.winner;
-    delete this.restartCountdown;
+    delete this.endGameCountdown;
   }
 }
 

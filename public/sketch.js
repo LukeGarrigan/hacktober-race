@@ -1,11 +1,13 @@
 import Terminal from './Terminal.js';
 import MasterBranch from './MasterBranch.js';
 import PlayersHandler from './PlayersHandler.js';
+import CountDown from './CountDown.js';
 
 const socket = io.connect('http://localhost:4000');
 const playersHandler = new PlayersHandler();
 let terminal;
 let masterBranch;
+let countDown = new CountDown();
 
 window.setup = function () {
   createCanvas(windowWidth, windowHeight);
@@ -24,6 +26,7 @@ window.draw = function () {
   terminal.draw();
   playersHandler.draw();
   masterBranch.draw();
+  countDown.draw();
 };
 
 window.keyPressed = function (e) {
@@ -38,5 +41,8 @@ function registerSocketHandlers () {
   socket.on('disconnect', playerId => playersHandler.removePlayer(playerId));
   socket.on('wrongLetter', () => { terminal.wrongLetter = true; });
   socket.on('winner', winner => {}); // display some sort of message? perhaps start drawing a countdown
-  socket.on('restart', () => playersHandler.resetPlayers());
+  socket.on('restart', () =>  {
+    playersHandler.resetPlayers();
+    countDown.beginGameStarting();
+  });
 }

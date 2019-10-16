@@ -5,6 +5,7 @@ const GameEngine = require('./GameEngine');
 
 const gameEngine = new GameEngine();
 const server = app.listen(4000);
+console.log("Server running on 4000");
 const path = require('path');
 
 const publicDir = path.join(__dirname, '../public');
@@ -40,10 +41,10 @@ function updateGame () {
   gameEngine.updatePlayers();
   io.sockets.emit('heartbeat', gameEngine.players);
   io.sockets.emit('sentence', gameEngine.sentence);
-  if (gameEngine.winner && !gameEngine.restartCountdown) {
+  if (gameEngine.winner && !gameEngine.endGameCountdown) {
     // emit event to show everyone that the game is finished
     io.sockets.emit('winner', gameEngine.winner.id);
-    gameEngine.restartCountdown = setTimeout(() => restartGame(), 5000);
+    gameEngine.endGameCountdown = setTimeout(() => restartGame(), 5000);
   }
 }
 
