@@ -22,7 +22,7 @@ export default class Player {
   draw () {
     fill(this.rgb.r, this.rgb.g, this.rgb.b);
     this.drawLines();
-    circle(this.x, this.y, 30);
+    circle(this.x, this.y, innerWidth/64);
 
     this.drawCurrentSpeed();
     // this.drawGithubImage();

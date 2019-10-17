@@ -1,15 +1,17 @@
 export default class Terminal {
   constructor () {
-    this.x = windowWidth * 0.2;
-    this.y = windowHeight / 2;
-    this.width = windowWidth * 0.6;
-    this.height = windowHeight / 2;
+    this.x = 0;
+    this.y = 0;
+    this.width = 0;
+    this.height = 0;
 
     this.cursorWidth = 14;
     this.cursorHeight = 6;
 
     this.currentIndex = 0;
     this.wrongLetter = false;
+
+    this.resize()
   }
 
   draw () {
@@ -17,6 +19,14 @@ export default class Terminal {
     this.displayPath();
     this.drawSentence();
     this.drawCursor();
+  }
+
+  resize()
+  {
+    this.x = innerWidth * 0.2;
+    this.y = innerHeight / 2;
+    this.width = innerWidth * 0.6;
+    this.height = innerHeight / 2;
   }
 
   updatePlayerCurrentLetter (currentIndex) {
@@ -30,52 +40,58 @@ export default class Terminal {
   drawTerminal () {
     push();
     // top of console
-    this.setGradient(200, this.y - 40, windowWidth - 420, 40, color(89, 87, 79), color(62, 61, 57), 1);
+    this.setGradient(200, this.y - 40, innerWidth - 420, 40, color(89, 87, 79), color(62, 61, 57), 1);
 
     // Buttons
     fill(224, 81, 31);
-    circle(windowWidth - 240, this.y - 20, 10);
+    circle(innerWidth - 240, this.y - 20, 10);
 
     textSize(14);
     fill(61, 53, 21);
-    text('x', windowWidth - 243, this.y - 16);
+    text('x', innerWidth - 243, this.y - 16);
 
     // Bottom of console
     fill(45, 9, 34, 150);
-    rect(200, this.y, windowWidth - 420, this.height);
+    rect(200, this.y, innerWidth - 420, this.height);
     pop();
   }
 
   displayPath () {
-    textSize(24);
+    let path = 'C:\\Users\\codeheir\\hacker\\path'
+    
+    textSize(innerWidth/80);
     fill(100, 255, 100);
-    text('C:\\Users\\codeheir\\hacker\\path', 220, this.y + 50);
+    text(path, 220, this.y + 50);
 
     fill(180, 180, 180);
-    text(':~$', 550, this.y + 50);
-    textSize(28);
+    text(':~$', 220+textWidth(path), this.y + 50);
+    textSize(innerWidth/68);
   }
 
   drawSentence () {
+    let pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$'
+
     if (this.sentence) {
       fill(255, 255, 255);
-      text(this.sentence, 595, this.y + 50);
+      text(this.sentence, 190+textWidth(pathFull), this.y + 50);
 
       if (this.wrongLetter && this.currentIndex + 1 < this.sentence.length - 1) {
         fill(255, 100, 100);
-        text(this.sentence.substring(0, this.currentIndex + 1), 595, this.y + 50);
+        text(this.sentence.substring(0, this.currentIndex + 1), 190+textWidth(pathFull), this.y + 50);
       }
       fill(100, 255, 100);
-      text(this.sentence.substring(0, this.currentIndex), 595, this.y + 50);
+      text(this.sentence.substring(0, this.currentIndex), 190+textWidth(pathFull), this.y + 50);
     }
   }
 
   drawCursor () {
+    let pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$'
+
     if (this.sentence) {
       if (Math.floor(frameCount / 60) % 2 === 0) {
         const currentCharWidth = textWidth(this.sentence.charAt(this.currentIndex));
         const currentSentenceWidth = textWidth(this.sentence.substring(0, this.currentIndex));
-        const cursorX = (594) + currentSentenceWidth + ((currentCharWidth - this.cursorWidth) / 2);
+        const cursorX = (190+textWidth(pathFull)) + currentSentenceWidth + ((currentCharWidth - this.cursorWidth) / 2);
 
         fill(100, 255, 100);
         rect(cursorX, (this.y + 50) + 8, this.cursorWidth, this.cursorHeight);
