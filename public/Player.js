@@ -93,6 +93,6 @@ export default class Player {
 
   drawCurrentSpeed () {
     textSize(32);
-    text(`${this.currentSpeed} cps`, this.x + 35, this.y);
+    text(`${this.currentSpeed} cps`, this.x + 55, this.y);
   }
 }
