@@ -10,14 +10,23 @@ let masterBranch;
 let countDown = new CountDown();
 
 window.setup = function () {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(innerWidth, innerHeight);
   masterBranch = new MasterBranch();
   terminal = new Terminal();
 
   registerSocketHandlers();
 };
 
+
+window.onresize = function()
+{
+  resizeCanvas(innerWidth, innerHeight);
+  terminal.resize()
+}
+
+
 window.draw = function () {
+  
   background(14, 16, 18);
   if (playersHandler.getPlayer(socket.id)) {
     terminal.updatePlayerCurrentLetter(playersHandler.getPlayer(socket.id).currentIndex);
