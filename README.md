@@ -1,8 +1,5 @@
 
 <h1 align="center">
-  <br>
-      <img src="https://pbs.twimg.com/profile_images/1168932795185586176/wvIE7fUn_400x400.jpg" alt="codeheir logo" title="Codeheir"  height="200" />
-  <br>
   Hacktober Racer ⌨🎮
   <br>
 </h1>
