@@ -2,17 +2,20 @@ import Terminal from './Terminal.js';
 import MasterBranch from './MasterBranch.js';
 import PlayersHandler from './PlayersHandler.js';
 import CountDown from './CountDown.js';
+import Background from './NoiseBackground.js';
 
 const socket = io.connect('http://localhost:4000');
 const playersHandler = new PlayersHandler();
 let terminal;
 let masterBranch;
 let countDown = new CountDown();
+let noiseBackground;
 
 window.setup = function () {
   createCanvas(innerWidth, innerHeight);
   masterBranch = new MasterBranch();
   terminal = new Terminal();
+  noiseBackground = new Background();
 
   registerSocketHandlers();
 };
@@ -27,11 +30,10 @@ window.onresize = function()
 
 window.draw = function () {
   
-  background(14, 16, 18);
   if (playersHandler.getPlayer(socket.id)) {
     terminal.updatePlayerCurrentLetter(playersHandler.getPlayer(socket.id).currentIndex);
   }
-
+  noiseBackground.draw();
   terminal.draw();
   playersHandler.draw();
   masterBranch.draw();
