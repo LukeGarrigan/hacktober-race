@@ -22,6 +22,7 @@ class GameEngine {
   }
 
   correctKeyPressed (key, id) {
+    if (this.winner) return;
     const player = this.getPlayer(id);
     return player.correctKeyPressed(key);
   }
@@ -57,11 +58,7 @@ class GameEngine {
   restart () {
     console.log('restarting game now');
     this.sentence = randomSentence();
-    for (let i = 0; i < this.players.length; i++) {
-      this.players[i].reset(this.sentence);
-    }
-    delete this.winner;
-    delete this.endGameCountdown;
+    this.players.forEach(p => p.reset(this.sentence));
   }
 }
 

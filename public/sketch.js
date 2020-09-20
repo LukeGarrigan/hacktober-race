@@ -45,7 +45,6 @@ function registerSocketHandlers () {
   socket.on('heartbeat', players => playersHandler.updatePlayers(players));
   socket.on('disconnect', playerId => playersHandler.removePlayer(playerId));
   socket.on('wrongLetter', () => { terminal.wrongLetter = true; });
-  socket.on('winner', winner => {}); // display some sort of message? perhaps start drawing a countdown
   socket.on('restart', () => {
     playersHandler.resetPlayers();
     countDown.beginGameStarting();

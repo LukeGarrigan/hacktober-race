@@ -42,15 +42,15 @@ function updateGame () {
   io.sockets.emit('heartbeat', gameEngine.players);
   io.sockets.emit('sentence', gameEngine.sentence);
   if (gameEngine.winner && !gameEngine.endGameCountdown) {
-    // emit event to show everyone that the game is finished
-    io.sockets.emit('winner', gameEngine.winner.id);
-    gameEngine.endGameCountdown = setTimeout(() => restartGame(), 5000);
+    gameEngine.endGameCountdown = setTimeout(() => {
+      console.log('Emitting restart event');
+      gameEngine.restart();
+      io.sockets.emit('restart');
+      setTimeout(() => {
+        gameEngine.winner = null
+        gameEngine.endGameCountdown = null;
+        console.log('10 second restart timer stopped, players can start typing');
+      }, 10000);
+    }, 5000);
   }
-}
-
-function restartGame () {
-  // emit event to reset players
-  io.sockets.emit('restart');
-  gameEngine.reset();
-  setTimeout(() => gameEngine.start(), 10000);
 }

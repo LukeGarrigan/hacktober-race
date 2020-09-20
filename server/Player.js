@@ -14,6 +14,9 @@ class Player {
       g: Math.random() * 255,
       b: Math.random() * 255
     };
+
+    this.winner = false;
+    this.finished = false;
   }
 
   reset (sentence) {
@@ -21,8 +24,8 @@ class Player {
     this.currentIndex = 0;
     this.currentSpeed = 0;
     this.startTime = Date.now();
-    delete this.winner;
-    delete this.finished;
+    this.winner = false;
+    this.finished = false;
   }
 
   correctKeyPressed (key) {
