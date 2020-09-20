@@ -11,7 +11,7 @@ export default class Terminal {
     this.currentIndex = 0;
     this.wrongLetter = false;
 
-    this.resize()
+    this.resize();
   }
 
   draw () {
@@ -21,8 +21,7 @@ export default class Terminal {
     this.drawCursor();
   }
 
-  resize()
-  {
+  resize () {
     this.x = innerWidth * 0.2;
     this.y = innerHeight / 2;
     this.width = innerWidth * 0.6;
@@ -57,41 +56,41 @@ export default class Terminal {
   }
 
   displayPath () {
-    let path = 'C:\\Users\\codeheir\\hacker\\path'
-    
-    textSize(innerWidth/80);
+    const path = 'C:\\Users\\codeheir\\hacker\\path';
+
+    textSize(innerWidth / 80);
     fill(100, 255, 100);
     text(path, 220, this.y + 50);
 
     fill(180, 180, 180);
-    text(':~$', 220+textWidth(path), this.y + 50);
-    textSize(innerWidth/68);
+    text(':~$', 220 + textWidth(path), this.y + 50);
+    textSize(innerWidth / 68);
   }
 
   drawSentence () {
-    let pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$'
+    const pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$';
 
     if (this.sentence) {
       fill(255, 255, 255);
-      text(this.sentence, 190+textWidth(pathFull), this.y + 50);
+      text(this.sentence, 190 + textWidth(pathFull), this.y + 50);
 
       if (this.wrongLetter && this.currentIndex + 1 < this.sentence.length - 1) {
         fill(255, 100, 100);
-        text(this.sentence.substring(0, this.currentIndex + 1), 190+textWidth(pathFull), this.y + 50);
+        text(this.sentence.substring(0, this.currentIndex + 1), 190 + textWidth(pathFull), this.y + 50);
       }
       fill(100, 255, 100);
-      text(this.sentence.substring(0, this.currentIndex), 190+textWidth(pathFull), this.y + 50);
+      text(this.sentence.substring(0, this.currentIndex), 190 + textWidth(pathFull), this.y + 50);
     }
   }
 
   drawCursor () {
-    let pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$'
+    const pathFull = 'C:\\Users\\codeheir\\hacker\\path:~$';
 
     if (this.sentence) {
       if (Math.floor(frameCount / 60) % 2 === 0) {
         const currentCharWidth = textWidth(this.sentence.charAt(this.currentIndex));
         const currentSentenceWidth = textWidth(this.sentence.substring(0, this.currentIndex));
-        const cursorX = (190+textWidth(pathFull)) + currentSentenceWidth + ((currentCharWidth - this.cursorWidth) / 2);
+        const cursorX = (190 + textWidth(pathFull)) + currentSentenceWidth + ((currentCharWidth - this.cursorWidth) / 2);
 
         fill(100, 255, 100);
         rect(cursorX, (this.y + 50) + 8, this.cursorWidth, this.cursorHeight);

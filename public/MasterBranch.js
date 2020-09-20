@@ -15,10 +15,10 @@ export default class MasterBranch {
   }
 
   drawFirstCircle () {
-    circle(100, 50, innerWidth/64);
+    circle(100, 50, innerWidth / 64);
   }
 
   drawEndCircle () {
-    circle(innerWidth - 100, 50, innerWidth/64);
+    circle(innerWidth - 100, 50, innerWidth / 64);
   }
 }

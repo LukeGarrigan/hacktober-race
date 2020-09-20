@@ -7,7 +7,7 @@ const socket = io.connect('http://localhost:4000');
 const playersHandler = new PlayersHandler();
 let terminal;
 let masterBranch;
-let countDown = new CountDown();
+const countDown = new CountDown();
 
 window.setup = function () {
   createCanvas(innerWidth, innerHeight);
@@ -17,16 +17,12 @@ window.setup = function () {
   registerSocketHandlers();
 };
 
-
-window.onresize = function()
-{
+window.onresize = function () {
   resizeCanvas(innerWidth, innerHeight);
-  terminal.resize()
-}
-
+  terminal.resize();
+};
 
 window.draw = function () {
-  
   background(14, 16, 18);
   if (playersHandler.getPlayer(socket.id)) {
     terminal.updatePlayerCurrentLetter(playersHandler.getPlayer(socket.id).currentIndex);
@@ -50,7 +46,7 @@ function registerSocketHandlers () {
   socket.on('disconnect', playerId => playersHandler.removePlayer(playerId));
   socket.on('wrongLetter', () => { terminal.wrongLetter = true; });
   socket.on('winner', winner => {}); // display some sort of message? perhaps start drawing a countdown
-  socket.on('restart', () =>  {
+  socket.on('restart', () => {
     playersHandler.resetPlayers();
     countDown.beginGameStarting();
   });

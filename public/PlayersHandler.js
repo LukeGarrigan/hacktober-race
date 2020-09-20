@@ -14,7 +14,6 @@ export default class PlayersHandler {
 
       const existingPlayer = this.playerExists(playerFromServer);
       if (!existingPlayer) {
-
         const playersYPosition = this.playerYPositionDelta + (this.playerYPositionDelta * (this.players.length + 1));
         playerFromServer.y = playersYPosition;
         this.players.push(new Player(playerFromServer));

@@ -7,7 +7,7 @@ module.exports = () => {
     'npm run my-funky-build-script',
     'find . -type f -name "*.php"',
     ':(){ :|: & };:',
-    'const express = require(\'express\')',
+    'const express = require(\'express\')'
   ];
   return sentences[Math.floor(Math.random() * sentences.length)];
 };

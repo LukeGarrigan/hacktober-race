@@ -5,7 +5,7 @@ const GameEngine = require('./GameEngine');
 
 const gameEngine = new GameEngine();
 const server = app.listen(4000);
-console.log("Server running on 4000");
+console.log('Server running on 4000');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '../public');
@@ -51,5 +51,6 @@ function updateGame () {
 function restartGame () {
   // emit event to reset players
   io.sockets.emit('restart');
-  gameEngine.restart();
+  gameEngine.reset();
+  setTimeout(() => gameEngine.start(), 10000);
 }
