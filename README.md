@@ -21,8 +21,6 @@
   
 </p>
 
-## ON HOLD UNTIL 2020 😃
-
 ## How to use
 1. `npm install` in the root directory
 2. `npm start` to get it running!
